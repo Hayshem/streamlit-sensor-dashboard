@@ -1,5 +1,6 @@
+import os
+import json
 import streamlit as st
-import pandas as pd
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from datetime import datetime
@@ -7,9 +8,14 @@ from prophet import Prophet
 from prophet.plot import plot_plotly
 from google.oauth2.service_account import Credentials
 import io
+import pandas as pd  # Make sure you import pandas
 
-# Path to your credentials.json file
-SERVICE_ACCOUNT_FILE = r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\credentials.json"
+# Get credentials from Streamlit secrets
+credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
+
+# Convert the secret dictionary to a Credentials object
+credentials = Credentials.from_service_account_info(credentials_dict, scopes=["https://www.googleapis.com/auth/drive.readonly"])
+
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 
 # Folder ID and file name
@@ -20,7 +26,6 @@ FILE_NAME = 'sensor_data.csv'
 @st.cache
 def fetch_csv_from_folder(folder_id, file_name):
     # Authenticate using the service account
-    credentials = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('drive', 'v3', credentials=credentials)
 
     # Search for the file by name in the specified folder
