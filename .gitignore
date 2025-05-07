@@ -1,0 +1,16 @@
+# Ignore all files and folders by default
+*
+
+# Allow specific project files
+!app.py
+!requirements.txt
+!.gitignore
+
+# Ignore system files and directories
+.DS_Store
+*.log
+*.exe
+*.dll
+node_modules/
+.anaconda/
+.AppData/
