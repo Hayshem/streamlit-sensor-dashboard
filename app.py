@@ -16,7 +16,11 @@ credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
 # Convert the secret dictionary to a Credentials object
 credentials = Credentials.from_service_account_info(credentials_dict, scopes=["https://www.googleapis.com/auth/drive.readonly"])
 
-SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
+SCOPES = [
+    "https://www.googleapis.com/auth/drive.readonly",
+    "https://www.googleapis.com/auth/spreadsheets.readonly"
+]
+
 
 # Folder ID and file name
 SPREADSHEET_ID = '11FHOapzFiKa0iim6evuCLcbsBZEp0j3-'
