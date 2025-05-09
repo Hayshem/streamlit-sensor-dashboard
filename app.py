@@ -23,28 +23,34 @@ SCOPES = [
 
 
 # Folder ID and file name
-SPREADSHEET_ID = '11FHOapzFiKa0iim6evuCLcbsBZEp0j3-'
+SPREADSHEET_ID = '1L-f5sLjb0Gt_6ZWQizS-tCCINkTg59jKZaLdj4Nr2ys'
 SHEET_NAME = 'SensorData'
 
 @st.cache
 def fetch_sheet_as_df(spreadsheet_id: str, sheet_name: str) -> pd.DataFrame:
-    # build the Sheets API client
-    sheets = build("sheets", "v4", credentials=credentials).spreadsheets()
+    try:
+        # Build the Sheets API client
+        sheets = build("sheets", "v4", credentials=credentials).spreadsheets()
 
-    # pull every row/column of that sheet tab
-    result = sheets.values().get(
-        spreadsheetId=spreadsheet_id,
-        range=sheet_name
-    ).execute()
+        # Pull data from the specified sheet tab
+        result = sheets.values().get(
+            spreadsheetId=spreadsheet_id,
+            range=sheet_name
+        ).execute()
 
-    values = result.get("values", [])
-    if not values or len(values) < 2:
-        st.error(f"No data found in sheet '{sheet_name}'.")
+        values = result.get("values", [])
+        if not values or len(values) < 2:
+            st.warning(f"No data found in sheet '{sheet_name}'. Ensure the sheet has a header row and data.")
+            return pd.DataFrame()
+
+        # First row is header, remaining rows are data
+        header, *rows = values
+        return pd.DataFrame(rows, columns=header)
+
+    except Exception as e:
+        st.error(f"Error fetching data from Google Sheets: {str(e)}")
         return pd.DataFrame()
 
-    # first row is header, rest is data
-    header, *rows = values
-    return pd.DataFrame(rows, columns=header)
 
 # Forecasting function
 def forecast(data, column, periods=24):
