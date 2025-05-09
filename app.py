@@ -19,38 +19,28 @@ credentials = Credentials.from_service_account_info(credentials_dict, scopes=["h
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 
 # Folder ID and file name
-FOLDER_ID = '11FHOapzFiKa0iim6evuCLcbsBZEp0j3-'
-FILE_NAME = 'sensor_data.csv'
+SPREADSHEET_ID = '11FHOapzFiKa0iim6evuCLcbsBZEp0j3-'
+SHEET_NAME = 'SensorData'
 
-# Function to fetch CSV from Google Drive folder
 @st.cache
-def fetch_csv_from_folder(folder_id, file_name):
-    # Authenticate using the service account
-    service = build('drive', 'v3', credentials=credentials)
+def fetch_sheet_as_df(spreadsheet_id: str, sheet_name: str) -> pd.DataFrame:
+    # build the Sheets API client
+    sheets = build("sheets", "v4", credentials=credentials).spreadsheets()
 
-    # Search for the file by name in the specified folder
-    query = f"'{folder_id}' in parents and name='{file_name}' and mimeType='text/csv'"
-    results = service.files().list(q=query, spaces='drive', fields='files(id, name)').execute()
-    files = results.get('files', [])
+    # pull every row/column of that sheet tab
+    result = sheets.values().get(
+        spreadsheetId=spreadsheet_id,
+        range=sheet_name
+    ).execute()
 
-    if not files:
-        st.error("CSV file not found in the specified folder.")
-        return None
+    values = result.get("values", [])
+    if not values or len(values) < 2:
+        st.error(f"No data found in sheet '{sheet_name}'.")
+        return pd.DataFrame()
 
-    # Fetch the file's ID
-    file_id = files[0]['id']
-
-    # Download the file content
-    request = service.files().get_media(fileId=file_id)
-    file_data = io.BytesIO()
-    downloader = MediaIoBaseDownload(file_data, request)
-
-    done = False
-    while not done:
-        status, done = downloader.next_chunk()
-
-    file_data.seek(0)
-    return pd.read_csv(file_data)
+    # first row is header, rest is data
+    header, *rows = values
+    return pd.DataFrame(rows, columns=header)
 
 # Forecasting function
 def forecast(data, column, periods=24):
@@ -67,7 +57,8 @@ def forecast(data, column, periods=24):
 st.title("Real-Time Sensor Data Dashboard")
 
 # Fetch real-time data from Google Drive
-data = fetch_csv_from_folder(FOLDER_ID, FILE_NAME)
+data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
+
 
 if data is not None:
     # Show the latest data
