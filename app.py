@@ -24,7 +24,7 @@ SCOPES = [
 
 # Folder ID and file name
 SPREADSHEET_ID = '1L-f5sLjb0Gt_6ZWQizS-tCCINkTg59jKZaLdj4Nr2ys'
-SHEET_NAME = 'SensorData'
+SHEET_NAME = 'Sheet1'
 
 @st.cache
 def fetch_sheet_as_df(spreadsheet_id: str, sheet_name: str) -> pd.DataFrame:
