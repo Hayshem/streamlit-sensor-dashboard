@@ -166,7 +166,7 @@ if not data.empty:
                 elif latest_forecast_value > 29.4:
                     st.warning("High temperature forecasted! Take precautions against heat.")
             elif column_to_forecast == 'Humidity':
-                st.write(f"Debug: Humidity forecast value: {latest_forecast_value}")
+                #st.write(f"Debug: Humidity forecast value: {latest_forecast_value}")
                 if latest_forecast_value < 25:
                     st.warning("Low humidity forecasted! Take precautions to stay hydrated.")
                 elif latest_forecast_value > 70:
