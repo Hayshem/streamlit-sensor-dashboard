@@ -66,7 +66,7 @@ def forecast(data, column, periods=24):
     return forecast, model
 
 # Streamlit Dashboard
-st.title("Real-Time Sensor Data Dashboard")
+st.title("Dashboard in Tempo Reale delle Metriche Ambientali")
 
 # Fetch real-time data from Google Drive
 data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
@@ -76,10 +76,10 @@ if not data.empty:
     data.columns = data.columns.str.strip()
 
     # Show the latest data
-    st.write("### Current Data", data.tail())
+    st.write("### Dati Attuali", data.tail())
 
     # Visualizations
-    st.write("### Data Visualization")
+    st.write("### Visualizzazione dei Dati")
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
         if column in data.columns:
             st.line_chart(data[column])
@@ -142,8 +142,8 @@ if not data.empty:
 
 
     # Forecasting
-    st.write("### Forecast for the Next 24 Hours")
-    column_to_forecast = st.selectbox("Select Parameter to Forecast", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
+    st.write("### Previsioni per le Prossime 24 Ore")
+    column_to_forecast = st.selectbox("Seleziona il parametro da prevedere", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
 
     if column_to_forecast in data.columns:
         try:
@@ -155,7 +155,7 @@ if not data.empty:
             st.plotly_chart(forecast_fig)
 
             # Notifications
-            st.write("### Insights and Notifications")
+            st.write("### Previsione e Notifiche")
             latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
