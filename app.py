@@ -1,5 +1,6 @@
 import os
 import json
+from socket import errorTab
 import streamlit as st
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
@@ -83,6 +84,61 @@ if not data.empty:
             st.line_chart(data[column])
         else:
             st.warning(f"Column '{column}' is not present in the data.")
+    
+
+    # Forecasting function
+    def forecast(data, column, periods=24):
+        df = data[['Timestamp', column]].copy()
+        df.columns = ['ds', 'y']
+        df['ds'] = pd.to_datetime(df['ds'])
+        model = Prophet()
+        model.fit(df)
+        future = model.make_future_dataframe(periods=periods, freq='H')
+        forecast = model.predict(future)
+        return forecast, model
+
+    # Plot forecast function
+    def plot_forecast(forecast_data, parameter):
+        fig = go.Figure()
+
+        # Add actual values
+        fig.add_trace(go.Scatter(
+            x=forecast_data['ds'],
+            y=forecast_data['yhat'],
+            mode='lines',
+            name=f'Forecasted {parameter}'
+        ))
+
+        # Add uncertainty intervals
+        fig.add_trace(go.Scatter(
+            x=forecast_data['ds'],
+            y=forecast_data['yhat_upper'],
+            mode='lines',
+            line=dict(width=0),
+            name='Upper Confidence Interval',
+            showlegend=False
+        ))
+        fig.add_trace(go.Scatter(
+            x=forecast_data['ds'],
+            y=forecast_data['yhat_lower'],
+            mode='lines',
+            line=dict(width=0),
+            name='Lower Confidence Interval',
+            showlegend=False,
+            fill='tonexty',
+            fillcolor='rgba(0,100,250,0.2)'
+        ))
+
+        # Customize layout
+        fig.update_layout(
+            title=f'{parameter} Forecast',
+            xaxis_title='Timestamp',
+            yaxis_title=parameter,
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        )
+
+        return fig
+
 
     # Forecasting
     st.write("### Forecast for the Next 24 Hours")
@@ -128,5 +184,3 @@ if not data.empty:
             st.error(f"Error during forecasting: {e}")
     else:
         st.error(f"Column '{column_to_forecast}' is not present in the data.")
-
-
