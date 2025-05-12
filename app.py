@@ -83,50 +83,50 @@ if not data.empty:
             st.warning(f"Column '{column}' is not present in the data.")
 
     # Forecasting
-st.write("### Forecast for the Next 24 Hours")
-column_to_forecast = st.selectbox("Select Parameter to Forecast", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
+    st.write("### Forecast for the Next 24 Hours")
+    column_to_forecast = st.selectbox("Select Parameter to Forecast", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
 
-if column_to_forecast in data.columns:
-    try:
-        forecast_data, model = forecast(data, column_to_forecast)
+    if column_to_forecast in data.columns:
+        try:
+            forecast_data, model = forecast(data, column_to_forecast)
         
-        # Debugging information
-        st.write("Forecast Data (Preview)", forecast_data.head())
-        st.write("Forecast Columns", forecast_data.columns)
+            # Debugging information
+            st.write("Forecast Data (Preview)", forecast_data.head())
+            st.write("Forecast Columns", forecast_data.columns)
 
-        # Plot the forecast
-        forecast_fig = plot_plotly(model, forecast_data)
-        st.plotly_chart(forecast_fig)
+            # Plot the forecast
+            forecast_fig = plot_plotly(model, forecast_data)
+            st.plotly_chart(forecast_fig)
 
-        # Notifications
-        st.write("### Insights and Notifications")
-        latest_forecast_value = forecast_data['yhat'].iloc[-1]
+            # Notifications
+            st.write("### Insights and Notifications")
+            latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
-        if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
-            st.warning("High electricity consumption forecasted!")
-        elif column_to_forecast == 'Temperature':
-            if latest_forecast_value < 18:
-                st.warning("Low temperature forecasted! Take precautions against cold.")
-            elif latest_forecast_value > 29.4:
-                st.warning("High temperature forecasted! Take precautions against heat.")
-        elif column_to_forecast == 'Humidity':
-            if latest_forecast_value < 25:
-                st.warning("Low humidity forecasted! Take precautions to stay hydrated.")
-            elif latest_forecast_value > 70:
-                st.warning("High humidity forecasted! Take precautions against discomfort.")
-        elif column_to_forecast == 'Air Quality':
-            if latest_forecast_value > 100:
-                if latest_forecast_value <= 150:
-                    st.warning("Air Quality Index indicates 'Unhealthy for Sensitive Groups'. Take precautions.")
-                elif latest_forecast_value <= 200:
-                    st.warning("Air Quality Index indicates 'Unhealthy'. Take precautions.")
-                elif latest_forecast_value <= 300:
-                    st.warning("Air Quality Index indicates 'Very Unhealthy'. Limit exposure and take precautions.")
-                else:
-                    st.warning("Air Quality Index indicates 'Hazardous'. Stay indoors and take precautions.")
+            if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
+                st.warning("High electricity consumption forecasted!")
+            elif column_to_forecast == 'Temperature':
+                if latest_forecast_value < 18:
+                    st.warning("Low temperature forecasted! Take precautions against cold.")
+                elif latest_forecast_value > 29.4:
+                    st.warning("High temperature forecasted! Take precautions against heat.")
+            elif column_to_forecast == 'Humidity':
+                if latest_forecast_value < 25:
+                    st.warning("Low humidity forecasted! Take precautions to stay hydrated.")
+                elif latest_forecast_value > 70:
+                    st.warning("High humidity forecasted! Take precautions against discomfort.")
+            elif column_to_forecast == 'Air Quality':
+                if latest_forecast_value > 100:
+                    if latest_forecast_value <= 150:
+                        st.warning("Air Quality Index indicates 'Unhealthy for Sensitive Groups'. Take precautions.")
+                    elif latest_forecast_value <= 200:
+                        st.warning("Air Quality Index indicates 'Unhealthy'. Take precautions.")
+                    elif latest_forecast_value <= 300:
+                        st.warning("Air Quality Index indicates 'Very Unhealthy'. Limit exposure and take precautions.")
+                    else:
+                        st.warning("Air Quality Index indicates 'Hazardous'. Stay indoors and take precautions.")
 
-    except Exception as e:
-        st.error(f"Error during forecasting: {e}")
-else:
-    st.error(f"Column '{column_to_forecast}' is not present in the data.")
+        except Exception as e:
+            st.error(f"Error during forecasting: {e}")
+    else:
+        st.error(f"Column '{column_to_forecast}' is not present in the data.")
 
