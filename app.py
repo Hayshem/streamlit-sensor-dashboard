@@ -10,7 +10,6 @@ from prophet.plot import plot_plotly
 from google.oauth2.service_account import Credentials
 import io
 import pandas as pd
-import plotly.graph_objects as go 
 
 
 # Get credentials from Streamlit secrets
