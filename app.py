@@ -159,7 +159,7 @@ if not data.empty:
             latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
-                st.warning("Previsione di un alto consumo di elettricità!")
+                st.warning("Previsione di un alto consumo di elettricita!")
             elif column_to_forecast == 'Temperature':
                 st.write(f"Valore previsto della temperatura: {latest_forecast_value}")
                 if latest_forecast_value < 18:
@@ -169,26 +169,26 @@ if not data.empty:
                 elif latest_forecast_value > 29.4:
                     st.warning("Previsione di alta temperatura! Prendere precauzioni contro il caldo.")
             elif column_to_forecast == 'Humidity':
-                st.write(f"Valore previsto dell'umidità: {latest_forecast_value}")
+                st.write(f"Valore previsto dell'umidita: {latest_forecast_value}")
                 if latest_forecast_value < 25:
-                    st.warning("Bassa umidità prevista! Prendere precauzioni per rimanere idratati.")
+                    st.warning("Bassa umidita prevista! Prendere precauzioni per rimanere idratati.")
                 elif 25 <= latest_forecast_value <= 70:
-                    st.success("I valori di umidità sono normali.")
+                    st.success("I valori di umidita sono normali.")
                 elif latest_forecast_value > 70:
-                     st.warning("Previsione di alta umidità! Prendere precauzioni contro il disagio.")
+                     st.warning("Previsione di alta umidita! Prendere precauzioni contro il disagio.")
 
             elif column_to_forecast == 'Air Quality':
-                st.write(f"Valore previsto della qualità dell'aria: {latest_forecast_value}")
+                st.write(f"Valore previsto della qualita dell'aria: {latest_forecast_value}")
                 if latest_forecast_value < 100:
-                    st.success("I valori della qualità dell'aria sono normali.")
+                    st.success("I valori della qualita dell'aria sono normali.")
                 elif 100 <= latest_forecast_value <= 150:
-                    st.warning("L'indice della qualità dell'aria indica 'Non salutare per i gruppi sensibili'. Prendere precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Non salutare per i gruppi sensibili'. Prendere precauzioni.")
                 elif 150 < latest_forecast_value <= 200:
-                    st.warning("L'indice della qualità dell'aria indica 'Non salutare'. Prendere precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Non salutare'. Prendere precauzioni.")
                 elif 200 < latest_forecast_value <= 300:
-                    st.warning("L'indice della qualità dell'aria indica 'Molto non salutare'. Limitare l'esposizione e prendere precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Molto non salutare'. Limitare l'esposizione e prendere precauzioni.")
                 else:
-                    st.warning("L'indice della qualità dell'aria indica 'Pericoloso'. Rimani dentro e prendi precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Pericoloso'. Rimani dentro e prendi precauzioni.")
 
         except Exception as e:
             st.error(f"Error during forecasting: {e}")
