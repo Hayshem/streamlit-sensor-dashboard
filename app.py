@@ -90,14 +90,11 @@ if not data.empty:
 
     if column_to_forecast in data.columns:
         try:
+            # Perform forecasting
             forecast_data, model = forecast(data, column_to_forecast)
-        
-            # Debugging information
-            st.write("Forecast Data (Preview)", forecast_data.head())
-            st.write("Forecast Columns", forecast_data.columns)
 
-            # Plot the forecast
-            forecast_fig = plot_plotly(model, forecast_data)
+            # Visualize the forecast using the custom plot function
+            forecast_fig = plot_forecast(forecast_data, column_to_forecast)
             st.plotly_chart(forecast_fig)
 
             # Notifications
@@ -131,4 +128,5 @@ if not data.empty:
             st.error(f"Error during forecasting: {e}")
     else:
         st.error(f"Column '{column_to_forecast}' is not present in the data.")
+
 
