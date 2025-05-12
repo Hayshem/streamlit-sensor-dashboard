@@ -1,16 +1,14 @@
 import os
 import json
-from socket import errorTab
 import streamlit as st
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from datetime import datetime
 from prophet import Prophet
-from prophet.plot import plot_plotly
 from google.oauth2.service_account import Credentials
 import io
 import pandas as pd
-import plotly.graph_objects as go 
+import plotly.graph_objects as go
 
 
 # Get credentials from Streamlit secrets
