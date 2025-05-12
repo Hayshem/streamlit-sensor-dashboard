@@ -21,7 +21,6 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets.readonly"
 ]
 
-
 # Folder ID and file name
 SPREADSHEET_ID = '1L-f5sLjb0Gt_6ZWQizS-tCCINkTg59jKZaLdj4Nr2ys'
 SHEET_NAME = 'Sheet1'
@@ -51,7 +50,6 @@ def fetch_sheet_as_df(spreadsheet_id: str, sheet_name: str) -> pd.DataFrame:
         st.error(f"Error fetching data from Google Sheets: {str(e)}")
         return pd.DataFrame()
 
-
 # Forecasting function
 def forecast(data, column, periods=24):
     df = data[['Timestamp', column]].copy()
@@ -70,9 +68,9 @@ st.title("Real-Time Sensor Data Dashboard")
 data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
 
 # Clean column names
-data.columns = data.columns.str.strip()
-
 if not data.empty:
+    data.columns = data.columns.str.strip()
+
     # Show the latest data
     st.write("### Current Data", data.tail())
 
@@ -91,15 +89,11 @@ if not data.empty:
         forecast_data, model = forecast(data, column_to_forecast)
         forecast_fig = plot_plotly(model, forecast_data)
         st.plotly_chart(forecast_fig)
+
+        # Notifications
+        if column_to_forecast == 'Electricity Usage' and forecast_data['yhat'].iloc[-1] > 50:
+            st.warning("High electricity consumption forecasted!")
     else:
         st.error(f"Column '{column_to_forecast}' is not present in the data.")
 else:
     st.error("Unable to fetch data or data is empty. Please check the Google Sheet.")
-
-
-    # Notifications
-    st.write("### Insights and Notifications")
-    if column_to_forecast == 'Electricity Usage' and forecast_data['yhat'].iloc[-1] > 50:
-        st.warning("High electricity consumption forecasted!")
-else:
-    st.error("Unable to fetch the CSV file. Please check the folder ID or file name.")
