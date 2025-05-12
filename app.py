@@ -66,7 +66,7 @@ def forecast(data, column, periods=24):
     return forecast, model
 
 # Streamlit Dashboard
-st.title("Dashboard in Tempo Reale delle Metriche Ambientali")
+st.title("Cruscotto in Tempo Reale delle Metriche Ambientali")
 
 # Fetch real-time data from Google Drive
 data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
@@ -159,36 +159,36 @@ if not data.empty:
             latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
-                st.warning("High electricity consumption forecasted!")
+                st.warning("Previsione di un alto consumo di elettricità!")
             elif column_to_forecast == 'Temperature':
-                st.write(f"Temperature forecast value: {latest_forecast_value}")
+                st.write(f"Valore previsto della temperatura: {latest_forecast_value}")
                 if latest_forecast_value < 18:
-                    st.warning("Low temperature forecasted! Take precautions against cold.")
+                    st.warning("Previsione di bassa temperatura! Prendere precauzioni contro il freddo.")
                 elif 18 <= latest_forecast_value <= 29.4:
-                    st.success("Temperature values are normal.")
+                    st.success("I valori della temperatura sono normali.")
                 elif latest_forecast_value > 29.4:
-                    st.warning("High temperature forecasted! Take precautions against heat.")
+                    st.warning("Previsione di alta temperatura! Prendere precauzioni contro il caldo.")
             elif column_to_forecast == 'Humidity':
-                st.write(f"Humidity forecast value: {latest_forecast_value}")
+                st.write(f"Valore previsto dell'umidità: {latest_forecast_value}")
                 if latest_forecast_value < 25:
-                    st.warning("Low humidity forecasted! Take precautions to stay hydrated.")
+                    st.warning("Bassa umidità prevista! Prendere precauzioni per rimanere idratati.")
                 elif 25 <= latest_forecast_value <= 70:
-                    st.success("Humidity values are normal.")
+                    st.success("I valori di umidità sono normali.")
                 elif latest_forecast_value > 70:
-                     st.warning("High humidity forecasted! Take precautions against discomfort.")
+                     st.warning("Previsione di alta umidità! Prendere precauzioni contro il disagio.")
 
             elif column_to_forecast == 'Air Quality':
-                st.write(f"Air Quality forecast value: {latest_forecast_value}")
+                st.write(f"Valore previsto della qualità dell'aria: {latest_forecast_value}")
                 if latest_forecast_value < 100:
-                    st.success("Air quality values are normal.")
+                    st.success("I valori della qualità dell'aria sono normali.")
                 elif 100 <= latest_forecast_value <= 150:
-                    st.warning("Air Quality Index indicates 'Unhealthy for Sensitive Groups'. Take precautions.")
+                    st.warning("L'indice della qualità dell'aria indica 'Non salutare per i gruppi sensibili'. Prendere precauzioni.")
                 elif 150 < latest_forecast_value <= 200:
-                    st.warning("Air Quality Index indicates 'Unhealthy'. Take precautions.")
+                    st.warning("L'indice della qualità dell'aria indica 'Non salutare'. Prendere precauzioni.")
                 elif 200 < latest_forecast_value <= 300:
-                    st.warning("Air Quality Index indicates 'Very Unhealthy'. Limit exposure and take precautions.")
+                    st.warning("L'indice della qualità dell'aria indica 'Molto non salutare'. Limitare l'esposizione e prendere precauzioni.")
                 else:
-                    st.warning("Air Quality Index indicates 'Hazardous'. Stay indoors and take precautions.")
+                    st.warning("L'indice della qualità dell'aria indica 'Pericoloso'. Rimani dentro e prendi precauzioni.")
 
         except Exception as e:
             st.error(f"Error during forecasting: {e}")
