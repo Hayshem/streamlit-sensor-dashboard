@@ -69,22 +69,33 @@ st.title("Real-Time Sensor Data Dashboard")
 # Fetch real-time data from Google Drive
 data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
 
+# Clean column names
+data.columns = data.columns.str.strip()
 
-if data is not None:
+if not data.empty:
     # Show the latest data
     st.write("### Current Data", data.tail())
 
     # Visualizations
     st.write("### Data Visualization")
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
-        st.line_chart(data[column])
+        if column in data.columns:
+            st.line_chart(data[column])
+        else:
+            st.warning(f"Column '{column}' is not present in the data.")
 
     # Forecasting
     st.write("### Forecast for the Next 24 Hours")
     column_to_forecast = st.selectbox("Select Parameter to Forecast", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
-    forecast_data, model = forecast(data, column_to_forecast)
-    forecast_fig = plot_plotly(model, forecast_data)
-    st.plotly_chart(forecast_fig)
+    if column_to_forecast in data.columns:
+        forecast_data, model = forecast(data, column_to_forecast)
+        forecast_fig = plot_plotly(model, forecast_data)
+        st.plotly_chart(forecast_fig)
+    else:
+        st.error(f"Column '{column_to_forecast}' is not present in the data.")
+else:
+    st.error("Unable to fetch data or data is empty. Please check the Google Sheet.")
+
 
     # Notifications
     st.write("### Insights and Notifications")
@@ -92,4 +103,3 @@ if data is not None:
         st.warning("High electricity consumption forecasted!")
 else:
     st.error("Unable to fetch the CSV file. Please check the folder ID or file name.")
-
