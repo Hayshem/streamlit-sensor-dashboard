@@ -161,28 +161,32 @@ if not data.empty:
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
                 st.warning("High electricity consumption forecasted!")
             elif column_to_forecast == 'Temperature':
+                st.write(f"Temperature forecast value: {latest_forecast_value}")
                 if latest_forecast_value < 18:
                     st.warning("Low temperature forecasted! Take precautions against cold.")
                 elif latest_forecast_value > 29.4:
                     st.warning("High temperature forecasted! Take precautions against heat.")
             elif column_to_forecast == 'Humidity':
-                st.write(f"Debug: Humidity forecast value: {latest_forecast_value}")
+                st.write(f"Humidity forecast value: {latest_forecast_value}")
                 if latest_forecast_value < 25:
                     st.warning("Low humidity forecasted! Take precautions to stay hydrated.")
+                elif 25 <= latest_forecast_value <= 70:
+                    st.success("Humidity values are normal.")
                 elif latest_forecast_value > 70:
                      st.warning("High humidity forecasted! Take precautions against discomfort.")
 
             elif column_to_forecast == 'Air Quality':
-                st.write(f"Debug: Air Quality forecast value: {latest_forecast_value}")
-                if latest_forecast_value > 100:
-                   if latest_forecast_value <= 150:
-                      st.warning("Air Quality Index indicates 'Unhealthy for Sensitive Groups'. Take precautions.")
-                   elif latest_forecast_value <= 200:
-                      st.warning("Air Quality Index indicates 'Unhealthy'. Take precautions.")
-                   elif latest_forecast_value <= 300:
-                       st.warning("Air Quality Index indicates 'Very Unhealthy'. Limit exposure and take precautions.")
-                   else:
-                       st.warning("Air Quality Index indicates 'Hazardous'. Stay indoors and take precautions.")
+                st.write(f"Air Quality forecast value: {latest_forecast_value}")
+                if latest_forecast_value < 100:
+                    st.success("Air quality values are normal.")
+                elif 100 <= latest_forecast_value <= 150:
+                    st.warning("Air Quality Index indicates 'Unhealthy for Sensitive Groups'. Take precautions.")
+                elif 150 < latest_forecast_value <= 200:
+                    st.warning("Air Quality Index indicates 'Unhealthy'. Take precautions.")
+                elif 200 < latest_forecast_value <= 300:
+                    st.warning("Air Quality Index indicates 'Very Unhealthy'. Limit exposure and take precautions.")
+                else:
+                    st.warning("Air Quality Index indicates 'Hazardous'. Stay indoors and take precautions.")
 
         except Exception as e:
             st.error(f"Error during forecasting: {e}")
