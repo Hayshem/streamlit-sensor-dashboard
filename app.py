@@ -82,10 +82,11 @@ if not data.empty:
     st.write("### Visualizzazione dei Dati")
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
         if column in data.columns:
+            st.write(f"#### Andamento di {column}")
             st.line_chart(data[column])
-        else:
-            st.warning(f"Column '{column}' is not present in the data.")
-    
+    else:
+        st.warning(f"Colonna '{column}' non presente nei dati.")
+
 
     # Forecasting function
     def forecast(data, column, periods=24):
