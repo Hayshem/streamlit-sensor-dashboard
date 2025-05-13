@@ -83,12 +83,12 @@ if not data.empty:
     'Temperature': 'Temperatura',
     'Humidity': 'Umidita',
     'Air Quality': 'Qualita dell\'aria',
-    'Electricity Usage': 'Consumo di elettricita'
+    'ElectricityUsage': 'Consumo di elettricita'
     }
 
     # Visualizations
     st.write("### Visualizzazione dei Dati")
-    for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
+    for column in ['Temperature', 'Humidity', 'Air Quality', 'ElectricityUsage']:
         if column in data.columns:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
             st.write(f"#### Andamento di {italian_column_name}")
