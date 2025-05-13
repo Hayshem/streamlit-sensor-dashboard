@@ -190,6 +190,7 @@ if not data.empty:
             latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
+                st.write(f"Valore previsto della consumo di elettricita: {latest_forecast_value}")
                 st.warning("Previsione di un alto consumo di elettricita!")
             elif column_to_forecast == 'Temperature':
                 st.write(f"Valore previsto della temperatura: {latest_forecast_value}")
