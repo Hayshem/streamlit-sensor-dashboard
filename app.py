@@ -81,9 +81,9 @@ if not data.empty:
     # Mapping of column names from English to Italian
     column_translation = {
     'Temperature': 'Temperatura',
-    'Humidity': 'Umidità',
-    'Air Quality': 'Qualità dell\'aria',
-    'Electricity Usage': 'Consumo di elettricità'
+    'Humidity': 'Umidita',
+    'Air Quality': 'Qualita dell\'aria',
+    'Electricity Usage': 'Consumo di elettricita'
     }
 
     # Visualizations
