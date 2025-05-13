@@ -75,18 +75,6 @@ data = fetch_sheet_as_df(SPREADSHEET_ID, SHEET_NAME)
 if not data.empty:
     data.columns = data.columns.str.strip()
 
-    # Mapping of column names from English to Italian
-    column_translation = {
-        'Timestamp': 'Timestamp',  # Assuming you want to keep this as 'Timestamp' in Italian
-        'Temperature': 'Temperatura',
-        'Humidity': 'Umidita',
-        'Air Quality': 'Qualita dell\'aria',
-        'Electricity Usage': 'Consumo di elettricita'
-    }
-
-    # Translate column names
-    data.rename(columns=column_translation, inplace=True)
-
     # Show the latest data
     st.write("### Dati Attuali", data.tail())
 
