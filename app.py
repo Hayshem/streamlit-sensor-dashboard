@@ -148,9 +148,9 @@ if not data.empty:
     # Mapping of parameters from English to Italian
     parameter_translation = {
     'Temperature': 'Temperatura',
-    'Humidity': 'Umidità',
-    'Air Quality': 'Qualità dell\'aria',
-    'Electricity Usage': 'Consumo di elettricità'
+    'Humidity': 'Umidita',
+    'Air Quality': 'Qualita dell\'aria',
+    'Electricity Usage': 'Consumo di elettricita'
     }
 
     # Reverse mapping for processing
