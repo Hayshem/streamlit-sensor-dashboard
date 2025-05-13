@@ -88,14 +88,18 @@ if not data.empty:
 
     # Visualizations
     st.write("### Visualizzazione dei Dati")
+    missing_columns = []  # To track missing columns
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
         if column in data.columns:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
             st.write(f"#### Andamento di {italian_column_name}")
             st.line_chart(data[column])
         else:
-            original_name = column_translation.get(column, column)
-            st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
+            missing_columns.append(column_translation.get(column, column))
+    if missing_columns:
+        st.warning(f"Colonne mancanti nei dati: {', '.join(missing_columns)}")
+             #original_name = column_translation.get(column, column)
+             #st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
 
 
     # Forecasting function
