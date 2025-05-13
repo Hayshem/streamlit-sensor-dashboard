@@ -144,7 +144,27 @@ if not data.empty:
 
     # Forecasting
     st.write("### Previsioni per le Prossime 24 Ore")
-    column_to_forecast = st.selectbox("Seleziona il parametro da prevedere", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
+    #column_to_forecast = st.selectbox("Seleziona il parametro da prevedere", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
+    # Mapping of parameters from English to Italian
+    parameter_translation = {
+    'Temperature': 'Temperatura',
+    'Humidity': 'Umidità',
+    'Air Quality': 'Qualità dell\'aria',
+    'Electricity Usage': 'Consumo di elettricità'
+    }
+
+    # Reverse mapping for processing
+    reverse_translation = {v: k for k, v in parameter_translation.items()}
+
+    # Display selection box in Italian
+    column_to_forecast_italian = st.selectbox(
+        "Seleziona il parametro da prevedere",
+        list(parameter_translation.values())
+    )
+
+    # Map the selected Italian parameter back to English for processing
+    column_to_forecast = reverse_translation[column_to_forecast_italian]
+
 
     if column_to_forecast in data.columns:
         try:
