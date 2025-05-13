@@ -78,14 +78,23 @@ if not data.empty:
     # Show the latest data
     st.write("### Dati Attuali", data.tail())
 
+    # Mapping of column names from English to Italian
+    column_translation = {
+    'Temperature': 'Temperatura',
+    'Humidity': 'Umidità',
+    'Air Quality': 'Qualità dell\'aria',
+    'ElectricityUsage': 'Consumo di elettricità'
+    }
+
     # Visualizations
     st.write("### Visualizzazione dei Dati")
-    for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
+    for column in ['Temperature', 'Humidity', 'Air Quality', 'ElectricityUsage']:
         if column in data.columns:
-            st.write(f"#### Andamento di {column}")
+            italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
+            st.write(f"#### Andamento di {italian_column_name}")
             st.line_chart(data[column])
     else:
-        st.warning(f"Colonna '{column}' non presente nei dati.")
+        st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
 
 
     # Forecasting function
