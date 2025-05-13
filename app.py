@@ -173,8 +173,8 @@ if not data.empty:
     )
 
     # Map the selected Italian parameter back to English for processing
-    column_to_forecast = reverse_translation[column_to_forecast_italian]
-
+    #column_to_forecast = reverse_translation[column_to_forecast_italian]
+    column_to_forecast = reverse_translation.get(column_to_forecast_italian)
 
     if column_to_forecast in data.columns:
         try:
