@@ -93,9 +93,9 @@ if not data.empty:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
             st.write(f"#### Andamento di {italian_column_name}")
             st.line_chart(data[column])
-    else:
-        original_name = column_translation.get(column, column)
-        st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
+        else:
+            original_name = column_translation.get(column, column)
+            st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
 
 
     # Forecasting function
