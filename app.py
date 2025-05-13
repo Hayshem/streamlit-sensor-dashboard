@@ -83,7 +83,7 @@ if not data.empty:
     'Temperature': 'Temperatura',
     'Humidity': 'Umidita',
     'Air Quality': 'Qualita dell\'aria',
-    'ElectricityUsage': 'Consumo di elettricita'
+    'Electricity Usage': 'Consumo di elettricita'
     }
 
     # Visualizations
