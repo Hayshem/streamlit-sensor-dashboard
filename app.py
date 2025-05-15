@@ -240,13 +240,13 @@ if not data.empty:
                 if latest_forecast_value < 100:
                     st.success("I valori della qualita dell'aria sono normali.")
                 elif 100 <= latest_forecast_value <= 150:
-                    st.warning("L'indice della qualita dell'aria indica 'Non salutare per i gruppi sensibili'. Prendere precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Non salutare per le persone sensibili'. Prendere precauzioni.")
                 elif 150 < latest_forecast_value <= 200:
                     st.warning("L'indice della qualita dell'aria indica 'Non salutare'. Prendere precauzioni.")
                 elif 200 < latest_forecast_value <= 300:
-                    st.warning("L'indice della qualita dell'aria indica 'Molto non salutare'. Limitare l'esposizione e prendere precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Non molto salutare'. Limitare l'esposizione e prendere precauzioni.")
                 else:
-                    st.warning("L'indice della qualita dell'aria indica 'Pericoloso'. Rimani dentro e prendi precauzioni.")
+                    st.warning("L'indice della qualita dell'aria indica 'Pericoloso'. Rimani al chiuso e prendi precauzioni.")
 
         except Exception as e:
             st.error(f"Error during forecasting: {e}")
