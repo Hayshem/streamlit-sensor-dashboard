@@ -208,7 +208,7 @@ if not data.empty:
             forecast_data, model = forecast(data, column_to_forecast)
 
             # Visualize the forecast using the custom plot function
-            forecast_fig = plot_forecast(forecast_data, column_to_forecast)
+            forecast_fig = plot_forecast(forecast_data, column_to_forecast, parameter_translation)
             st.plotly_chart(forecast_fig)
 
             # Notifications
