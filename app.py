@@ -132,45 +132,50 @@ if not data.empty:
 
     # Plot forecast function
     def plot_forecast(forecast_data, parameter):
+        italian_label = parameter_translation.get(parameter, parameter)  # Translate parameter name to Italian
+    
         fig = go.Figure()
 
-        # Add actual values
+        # Add actual values (forecasted values)
         fig.add_trace(go.Scatter(
             x=forecast_data['ds'],
             y=forecast_data['yhat'],
             mode='lines',
-            name=f'Forecasted {parameter}'
+            name=f"Previsione di {italian_label}"  # Forecasted label in Italian
         ))
 
-        # Add uncertainty intervals
+        # Add uncertainty intervals (upper confidence)
         fig.add_trace(go.Scatter(
             x=forecast_data['ds'],
             y=forecast_data['yhat_upper'],
             mode='lines',
             line=dict(width=0),
-            name='Upper Confidence Interval',
+            name="Intervallo di confidenza superiore",  # Upper confidence interval in Italian
             showlegend=False
         ))
+
+        # Add uncertainty intervals (lower confidence)
         fig.add_trace(go.Scatter(
             x=forecast_data['ds'],
             y=forecast_data['yhat_lower'],
             mode='lines',
             line=dict(width=0),
-            name='Lower Confidence Interval',
+            name="Intervallo di confidenza inferiore",  # Lower confidence interval in Italian
             showlegend=False,
             fill='tonexty',
             fillcolor='rgba(0,100,250,0.2)'
         ))
 
-        # Customize layout
+        # Customize layout with Italian labels
         fig.update_layout(
-            title=f'{parameter} Forecast',
-            xaxis_title='Timestamp',
-            yaxis_title=parameter,
-            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+            title=f"Previsione di {italian_label}",  # Title in Italian
+            xaxis_title="Tempo",  # x-axis label in Italian
+            yaxis_title=italian_label,  # y-axis label in Italian
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         )
 
         return fig
+
 
 
     # Forecasting
