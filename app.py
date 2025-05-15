@@ -89,6 +89,12 @@ if not data.empty:
     # Visualizations
     st.write("### Visualizzazione dei Dati")
     missing_columns = []  # To track missing columns
+
+    # Ensure Timestamp column is present and properly formatted
+    if 'Timestamp' in data.columns:
+        data['Timestamp'] = pd.to_datetime(data['Timestamp'])  # Convert to datetime if not already
+        data.set_index('Timestamp', inplace=True)  # Set as index for proper plotting
+
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
         if column in data.columns:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
