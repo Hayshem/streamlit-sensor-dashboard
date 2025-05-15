@@ -12,7 +12,7 @@ from google.oauth2.service_account import Credentials
 import io
 import pandas as pd
 import plotly.graph_objects as go 
-
+import plotly.express as px
 
 # Get credentials from Streamlit secrets
 credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
@@ -93,17 +93,28 @@ if not data.empty:
     # Ensure Timestamp column is present and properly formatted
     if 'Timestamp' in data.columns:
         data['Timestamp'] = pd.to_datetime(data['Timestamp'])  # Convert to datetime if not already
-        data.set_index('Timestamp', inplace=True)  # Set as index for proper plotting
+       # data.set_index('Timestamp', inplace=True)  # Set as index for proper plotting
 
     for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
         if column in data.columns:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
-            st.write(f"#### Andamento di {italian_column_name}")
-            st.line_chart(data[column])
+
+
+            fig = px.line(
+                data_frame=data,
+                x='Timestamp',
+                y=column,
+                title=f"Andamento di {italian_column_name}",
+                labels={"Timestamp": "Tempo", column: italian_column_name},
+            )
+            st.plotly_chart(fig)
+            #st.write(f"#### Andamento di {italian_column_name}")
+            #st.line_chart(data[column])
         else:
             missing_columns.append(column_translation.get(column, column))
     if missing_columns:
         st.warning(f"Colonne mancanti nei dati: {', '.join(missing_columns)}")
+
              #original_name = column_translation.get(column, column)
              #st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
 
