@@ -24,10 +24,10 @@ col1, col2 = st.columns(2)
 
 # Display logos in the respective columns
 with col1:
-    st.image(logo1, use_container_width=True)
+    st.image(logo2, use_container_width=True)
 
 with col2:
-    st.image(logo2, use_container_width=True)
+    st.image(logo1, use_container_width=True)
 
 # Get credentials from Streamlit secrets
 credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
