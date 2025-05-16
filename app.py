@@ -16,8 +16,8 @@ import plotly.express as px
 from PIL import Image
 
 # Load the logo images
-logo1 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\Tele\images.png")  # First logo path
-logo2 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\Tele\NODES_logo.png")  # Second logo path
+logo1 = Image.open("images.png")  # First logo path
+logo2 = Image.open("NODES_logo.png")  # Second logo path
 
 # A layout with two columns for logos
 col1, col2 = st.columns(2)
