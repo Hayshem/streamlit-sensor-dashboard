@@ -5,6 +5,8 @@
 !app.py
 !requirements.txt
 !.gitignore
+!images.png
+!NODES_Logo.png
 
 # Ignore system files and directories
 .DS_Store
