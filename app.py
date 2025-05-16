@@ -15,20 +15,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 from PIL import Image
 
-# Load the logo images
-logo1 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\images.png")  # First logo path
-logo2 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\NODES_logo.png")  # Second logo path
-
-# Create a layout with two columns for logos
-col1, col2 = st.columns(2)
-
-# Display logos in the respective columns
-with col1:
-    st.image(logo1, use_column_width=True)
-
-with col2:
-    st.image(logo2, use_column_width=True)
-
 # Get credentials from Streamlit secrets
 credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
 
@@ -43,6 +29,20 @@ SCOPES = [
 # Folder ID and file name
 SPREADSHEET_ID = '1L-f5sLjb0Gt_6ZWQizS-tCCINkTg59jKZaLdj4Nr2ys'
 SHEET_NAME = 'Sheet1'
+
+# Load the logo images
+logo1 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\images.png")  # First logo path
+logo2 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\NODES_logo.png")  # Second logo path
+
+# A layout with two columns for logos
+col1, col2 = st.columns(2)
+
+# Display logos in the respective columns
+with col1:
+    st.image(logo1, use_column_width=True)
+
+with col2:
+    st.image(logo2, use_column_width=True)
 
 @st.cache_data(ttl=300)
 def fetch_sheet_as_df(spreadsheet_id: str, sheet_name: str) -> pd.DataFrame:
