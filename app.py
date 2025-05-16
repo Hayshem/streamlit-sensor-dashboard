@@ -31,8 +31,8 @@ SPREADSHEET_ID = '1L-f5sLjb0Gt_6ZWQizS-tCCINkTg59jKZaLdj4Nr2ys'
 SHEET_NAME = 'Sheet1'
 
 # Load the logo images
-logo1 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\images.png")  # First logo path
-logo2 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\NODES_logo.png")  # Second logo path
+logo1 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\Tele\images.png")  # First logo path
+logo2 = Image.open(r"C:\Users\Hayshem Ali Butt\Desktop\Nodes\Tele\NODES_logo.png")  # Second logo path
 
 # A layout with two columns for logos
 col1, col2 = st.columns(2)
