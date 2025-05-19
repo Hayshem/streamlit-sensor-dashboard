@@ -136,6 +136,7 @@ if not data.empty:
                 data_frame=data,
                 x='Timestamp',
                 y=column,
+                title=f"{italian_column_name}",
                 #title=f"Andamento di {italian_column_name}",
                 labels={"Timestamp": "Tempo", column: italian_column_name},
             )
