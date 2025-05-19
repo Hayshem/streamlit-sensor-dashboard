@@ -129,11 +129,8 @@ if not data.empty:
                 st.image(logo, use_container_width=True)
             with col_text:
                 #st.write(f"Andamento di {italian_column_name}:")
-                #st.markdown(f"#### **Andamento di {italian_column_name}**")
-                st.markdown(
-                    f"<h4 style='margin-bottom: 0px;'>**Andamento di {italian_column_name}**</h4>",
-                    unsafe_allow_html=True
-                )   
+                st.markdown(f"#### **Andamento di {italian_column_name}:**")
+                
 
             fig = px.line(
                 data_frame=data,
