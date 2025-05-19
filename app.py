@@ -31,7 +31,7 @@ with col2:
     st.image(logo1, use_container_width=True)
 
 # Load and resize section logos
-logo_temp = Image.open("temperature.png")
+logo_temp = Image.open("temperature.png").resize((50, 50))
 logo_humid = Image.open("Humidity.png").resize((50, 50))
 logo_air_quality = Image.open("CO.png").resize((50, 50))
 logo_electricity = Image.open("electricity.png").resize((50, 50))
