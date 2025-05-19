@@ -131,15 +131,7 @@ if not data.empty:
                 #st.write(f"Andamento di {italian_column_name}:")
                 #st.markdown(f"#### **Andamento di {italian_column_name}**")
                 st.markdown(
-                    f"""
-                    <style>
-                        h4 {{
-                            margin-bottom: 0px;
-                            line-height: 1.1;
-                        }}
-                    </style>
-                    <h4>**Andamento di {italian_column_name}**</h4>
-                    """,
+                    f"<h4 style='margin-bottom: 0px;'>**Andamento di {italian_column_name}**</h4>",
                     unsafe_allow_html=True
                 )   
 
