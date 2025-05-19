@@ -127,14 +127,14 @@ if not data.empty:
             col_img, col_text = st.columns([1, 9])
             with col_img:
                 st.image(logo, use_container_width=True)
-            #with col_text:
-                #st.write(f"Andamento di {italian_column_name}")
+            with col_text:
+                st.write(f"Andamento di {italian_column_name}")
 
             fig = px.line(
                 data_frame=data,
                 x='Timestamp',
                 y=column,
-                title=f"Andamento di {italian_column_name}",
+                #title=f"Andamento di {italian_column_name}",
                 labels={"Timestamp": "Tempo", column: italian_column_name},
             )
             st.plotly_chart(fig)
