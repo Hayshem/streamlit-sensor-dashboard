@@ -109,7 +109,7 @@ if not data.empty:
     }
 
     # Visualizations
-    st.write("### Visualizzazione dei Dati")
+    #st.write("### Visualizzazione dei Dati")
     missing_columns = []  # To track missing columns
 
     # Ensure Timestamp column is present and properly formatted
