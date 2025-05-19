@@ -1,3 +1,4 @@
+from dbm import ndbm
 import os
 import json
 #from socket import errorTab
@@ -28,6 +29,12 @@ with col1:
 
 with col2:
     st.image(logo1, use_container_width=True)
+
+# Load and resize section logos
+logo_temp = Image.open("temperature.png").resize((50, 50))
+logo_humid = Image.open("Humidity.png").resize((50, 50))
+logo_air_quality = Image.open("CO.png").resize((50, 50))
+logo_electricity = Image.open("electricity.png").resize((50, 50))
 
 # Get credentials from Streamlit secrets
 credentials_dict = st.secrets["GOOGLE_CREDENTIALS"]
@@ -110,10 +117,18 @@ if not data.empty:
         data['Timestamp'] = pd.to_datetime(data['Timestamp'])  # Convert to datetime if not already
        # data.set_index('Timestamp', inplace=True)  # Set as index for proper plotting
 
-    for column in ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage']:
+    for column, logo in zip*=(
+        ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'],
+        [logo_temp, logo_humid, logo_air_quality, logo_electricity]
+     ):
         if column in data.columns:
             italian_column_name = column_translation.get(column, column)  # Get Italian name or fallback to original
 
+            col_img, col_text = st.columns([1, 9])
+            with col_img:
+                st.image(logo, use_column_width=True)
+            with col_text:
+                st.write(f"Andamento di {italian_column_name}")
 
             fig = px.line(
                 data_frame=data,
