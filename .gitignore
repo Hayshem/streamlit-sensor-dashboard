@@ -7,6 +7,10 @@
 !.gitignore
 !images.png
 !NODES_Logo.png
+!temperature.png
+!Humidity.png
+!CO.png
+!electricity.png
 
 # Ignore system files and directories
 .DS_Store
