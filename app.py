@@ -126,7 +126,7 @@ if not data.empty:
 
             col_img, col_text = st.columns([1, 9])
             with col_img:
-                st.image(logo, use_column_width=True)
+                st.image(logo, use_container_width=True)
             with col_text:
                 st.write(f"Andamento di {italian_column_name}")
 
