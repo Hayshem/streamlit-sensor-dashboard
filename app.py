@@ -128,7 +128,7 @@ if not data.empty:
             with col_img:
                 st.image(logo, use_container_width=True)
             with col_text:
-                st.write(f"Andamento di {italian_column_name}")
+                #st.write(f"Andamento di {italian_column_name}")
 
             fig = px.line(
                 data_frame=data,
