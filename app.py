@@ -200,12 +200,10 @@ if not data.empty:
 
         # Customize layout with Italian labels
         fig.update_layout(
-            margin=dict(t=10, b=10),  # Reduce top and bottom margins
-            title=None 
-            #title=f"Previsione di {italian_label}",  # Title in Italian
-            #xaxis_title="Tempo",  # x-axis label in Italian
-            #yaxis_title=italian_label,  # y-axis label in Italian
-            #legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            title=f"Previsione di {italian_label}",  # Title in Italian
+            xaxis_title="Tempo",  # x-axis label in Italian
+            yaxis_title=italian_label,  # y-axis label in Italian
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         )
 
         return fig
