@@ -129,7 +129,19 @@ if not data.empty:
                 st.image(logo, use_container_width=True)
             with col_text:
                 #st.write(f"Andamento di {italian_column_name}:")
-                st.markdown(f"#### **Andamento di {italian_column_name}**")
+                #st.markdown(f"#### **Andamento di {italian_column_name}**")
+                st.markdown(
+                    f"""
+                    <style>
+                        h4 {{
+                            margin-bottom: 0px;
+                            line-height: 1.1;
+                        }}
+                    </style>
+                    <h4>**Andamento di {italian_column_name}**</h4>
+                    """,
+                    unsafe_allow_html=True
+                )   
 
             fig = px.line(
                 data_frame=data,
@@ -283,4 +295,3 @@ if not data.empty:
             st.error(f"Error during forecasting: {e}")
     else:
         st.error(f"Column '{column_to_forecast}' is not present in the data.")
-
