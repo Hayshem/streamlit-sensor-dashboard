@@ -117,7 +117,7 @@ if not data.empty:
         data['Timestamp'] = pd.to_datetime(data['Timestamp'])  # Convert to datetime if not already
        # data.set_index('Timestamp', inplace=True)  # Set as index for proper plotting
 
-    for column, logo in zip*=(
+    for column, logo in zip(
         ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'],
         [logo_temp, logo_humid, logo_air_quality, logo_electricity]
      ):
