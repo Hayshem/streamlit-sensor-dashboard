@@ -154,7 +154,6 @@ if not data.empty:
              #original_name = column_translation.get(column, column)
              #st.warning(f"Colonna '{column_translation.get(column, column)}' non presente nei dati.")
 
-
     # Forecasting function
     def forecast(data, column, periods=24):
         df = data[['Timestamp', column]].copy()
