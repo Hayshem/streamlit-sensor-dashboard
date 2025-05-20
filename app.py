@@ -23,10 +23,10 @@ logo2 = Image.open("NODES_Logo.png")  # Second logo path
 #logo1 = logo1.resize((int(logo1.width * 0.5), int(logo1.height * 0.5)))  
 #logo2 = logo2.resize((int(logo2.width * 0.8), int(logo2.height * 0.7)))
 
-# A layout with two columns for logos
+#A layout with two columns for logos
 col1, col2 = st.columns(2)
 
-# Display logos in the respective columns
+#Display logos in the respective columns
 with col1:
     st.image(logo2, use_container_width=True)
 
