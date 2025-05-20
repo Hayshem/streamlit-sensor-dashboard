@@ -101,7 +101,7 @@ if not data.empty:
     data.columns = data.columns.str.strip()
 
     # Show the latest data
-    st.write("###Dati Attuali", data.tail())
+    st.write("### Dati Attuali", data.tail())
 
     # Mapping of column names from English to Italian
     column_translation = {
@@ -132,7 +132,7 @@ if not data.empty:
                 st.image(logo, use_container_width=True)
             with col_text:
                 #st.write(f"Andamento di {italian_column_name}:")
-                st.markdown(f"####**Andamento di {italian_column_name}:**")
+                st.markdown(f"#### **Andamento di {italian_column_name}:**")
                 
 
             fig = px.line(
@@ -257,14 +257,14 @@ if not data.empty:
             st.plotly_chart(forecast_fig)
 
             # Load and resize the additional image
-            notification_icon = Image.open("Notification.png").resize((50, 50))  # Replace with your actual image path
+            notification_icon = Image.open("Notification1.png").resize((50, 50))  # Replace with your actual image path
 
             # Display the section header with the image
             col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
             with col1:
                 st.image(notification_icon, use_container_width=False)
             with col2:
-                st.markdown("###Previsione e Notifiche")
+                st.markdown("### Previsione e Notifiche")
 
             # Notifications
             #st.write("### Previsione e Notifiche")
