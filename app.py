@@ -215,7 +215,7 @@ if not data.empty:
 
 
     # Load and resize the additional image
-    forecast_icon = Image.open("forecast.png").resize((50, 50))  # Replace with your actual image path
+    forecast_icon = Image.open("forecast.png") # Replace with your actual image path
 
     # Display the section header with the image
     col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
