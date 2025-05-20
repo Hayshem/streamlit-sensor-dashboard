@@ -11,6 +11,8 @@
 !Humidity.png
 !CO.png
 !electricity.png
+!forecast.png
+!Notification.png
 
 # Ignore system files and directories
 .DS_Store
