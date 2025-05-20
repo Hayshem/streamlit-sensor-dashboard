@@ -21,7 +21,7 @@ logo1 = Image.open("images.png")  # First logo path
 logo2 = Image.open("NODES_Logo.png")  # Second logo path
 
 #logo1 = logo1.resize((int(logo1.width * 0.5), int(logo1.height * 0.5)))  # Adjust scale as needed
-logo2 = logo2.resize((int(logo2.width * 0.8), int(logo2.height * 0.7)))
+#logo2 = logo2.resize((int(logo2.width * 0.8), int(logo2.height * 0.7)))
 
 # A layout with two columns for logos
 col1, col2 = st.columns(2)
@@ -256,8 +256,18 @@ if not data.empty:
             forecast_fig = plot_forecast(forecast_data, column_to_forecast)
             st.plotly_chart(forecast_fig)
 
+            # Load and resize the additional image
+            notification_icon = Image.open("Notification.png").resize((50, 50))  # Replace with your actual image path
+
+            # Display the section header with the image
+            col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
+            with col1:
+                st.image(notification_icon, use_container_width=False)
+            with col2:
+                st.markdown("### Previsione e Notifiche")
+
             # Notifications
-            st.write("### Previsione e Notifiche")
+            #st.write("### Previsione e Notifiche")
             latest_forecast_value = forecast_data['yhat'].iloc[-1]
 
             if column_to_forecast == 'Electricity Usage' and latest_forecast_value > 50:
