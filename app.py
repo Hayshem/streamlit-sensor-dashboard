@@ -101,7 +101,7 @@ if not data.empty:
     data.columns = data.columns.str.strip()
 
     # Show the latest data
-    st.write("### Dati Attuali", data.tail())
+    st.write("###Dati Attuali", data.tail())
 
     # Mapping of column names from English to Italian
     column_translation = {
@@ -132,7 +132,7 @@ if not data.empty:
                 st.image(logo, use_container_width=True)
             with col_text:
                 #st.write(f"Andamento di {italian_column_name}:")
-                st.markdown(f"#### **Andamento di {italian_column_name}:**")
+                st.markdown(f"####**Andamento di {italian_column_name}:**")
                 
 
             fig = px.line(
@@ -264,7 +264,7 @@ if not data.empty:
             with col1:
                 st.image(notification_icon, use_container_width=False)
             with col2:
-                st.markdown("### Previsione e Notifiche")
+                st.markdown("###Previsione e Notifiche")
 
             # Notifications
             #st.write("### Previsione e Notifiche")
