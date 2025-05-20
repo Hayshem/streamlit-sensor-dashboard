@@ -220,7 +220,7 @@ if not data.empty:
     # Display the section header with the image
     col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
     with col1:
-        st.image(forecast_icon, use_column_width=False)
+        st.image(forecast_icon, use_container_width=False)
     with col2:
         st.markdown("### Previsioni per le Prossime 24 Ore")
     # Forecasting
