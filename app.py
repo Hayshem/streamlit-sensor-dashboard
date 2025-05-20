@@ -257,7 +257,7 @@ if not data.empty:
             st.plotly_chart(forecast_fig)
 
             # Load and resize the additional image
-            notification_icon = Image.open("Notification1.png").resize((50, 50))  # Replace with your actual image path
+            notification_icon = Image.open("Notification.png").resize((50, 50))  # Replace with your actual image path
 
             # Display the section header with the image
             col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
