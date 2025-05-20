@@ -20,7 +20,7 @@ from PIL import Image
 logo1 = Image.open("images.png")  # First logo path
 logo2 = Image.open("NODES_Logo.png")  # Second logo path
 
-#logo1 = logo1.resize((int(logo1.width * 0.5), int(logo1.height * 0.5)))  # Adjust scale as needed
+#logo1 = logo1.resize((int(logo1.width * 0.5), int(logo1.height * 0.5)))  
 #logo2 = logo2.resize((int(logo2.width * 0.8), int(logo2.height * 0.7)))
 
 # A layout with two columns for logos
