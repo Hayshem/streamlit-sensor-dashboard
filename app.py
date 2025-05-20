@@ -20,6 +20,9 @@ from PIL import Image
 logo1 = Image.open("images.png")  # First logo path
 logo2 = Image.open("NODES_Logo.png")  # Second logo path
 
+logo1 = logo1.resize((int(logo1.width * 0.5), int(logo1.height * 0.5)))  # Adjust scale as needed
+logo2 = logo2.resize((int(logo2.width * 0.5), int(logo2.height * 0.5)))
+
 # A layout with two columns for logos
 col1, col2 = st.columns(2)
 
@@ -211,8 +214,17 @@ if not data.empty:
 
 
 
+    # Load and resize the additional image
+    forecast_icon = Image.open("forecast.png").resize((50, 50))  # Replace with your actual image path
+
+    # Display the section header with the image
+    col1, col2 = st.columns([1, 9])  # Adjust column width ratio as needed
+    with col1:
+        st.image(forecast_icon, use_column_width=False)
+    with col2:
+        st.markdown("### Previsioni per le Prossime 24 Ore")
     # Forecasting
-    st.write("### Previsioni per le Prossime 24 Ore")
+    #st.write("### Previsioni per le Prossime 24 Ore")
     #column_to_forecast = st.selectbox("Seleziona il parametro da prevedere", ['Temperature', 'Humidity', 'Air Quality', 'Electricity Usage'])
     # Mapping of parameters from English to Italian
     parameter_translation = {
