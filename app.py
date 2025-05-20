@@ -211,7 +211,7 @@ if not data.empty:
         )
 
         return fig
-
+    
 
 
     # Load and resize the additional image
