@@ -3,6 +3,7 @@
 
 # Allow specific project files
 !app.py
+!app1.py
 !requirements.txt
 !.gitignore
 !images.png
