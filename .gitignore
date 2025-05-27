@@ -2,6 +2,7 @@
 *
 
 # Allow specific project files
+!app2.py
 !app.py
 !app1.py
 !requirements.txt
