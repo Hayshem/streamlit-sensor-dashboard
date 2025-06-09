@@ -16,7 +16,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 from PIL import Image
 
-
 # Load the logo images
 logo1 = Image.open("images.png")  # First logo path
 logo2 = Image.open("NODES_Logo.png")  # Second logo path
