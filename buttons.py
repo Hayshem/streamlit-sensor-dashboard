@@ -31,10 +31,10 @@ div.stButton > button:nth-of-type(4) { background-color: #e74c3c; } /* Red */
 
 /* Style for the smaller back button */
 .back-button button {
-    height: 40px; /* Smaller height */
-    width: 80px; /* Smaller width */
+    height: 20px; /* Smaller height */
+    width: 400px; /* Smaller width */
     font-size: 14px; /* Smaller font size */
-    background-color: #555; /* Dark gray background */
+    background-color: #555; /* Black */
     color: white; /* White text */
     border-radius: 10px; /* Rounded corners */
 }
