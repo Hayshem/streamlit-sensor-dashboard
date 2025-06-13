@@ -25,8 +25,6 @@ st.markdown("""
 
 # Main page
 def main_page():
-    st.title("Main Dashboard")
-    st.write("Choose an option:")
 
     # Arrange buttons in two columns
     col1, col2 = st.columns(2, gap="large")
