@@ -1,24 +1,61 @@
 import streamlit as st
 
+# Inject custom CSS
+st.markdown("""
+<style>
+/* Center the button container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Spacing between buttons */
+    margin-top: 50px;
+}
+
+/* Style individual buttons */
+div.stButton > button {
+    height: 100px;
+    width: 200px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Button colors */
+div.stButton > button.outdoor { background-color: #3498db; } /* Blue */
+div.stButton > button.indoor { background-color: #2ecc71; } /* Green */
+div.stButton > button.medical { background-color: #f39c12; } /* Orange */
+div.stButton > button.social { background-color: #e74c3c; } /* Red */
+
+/* Hover effects */
+div.stButton > button.outdoor:hover { background-color: #2980b9; }
+div.stButton > button.indoor:hover { background-color: #27ae60; }
+div.stButton > button.medical:hover { background-color: #d35400; }
+div.stButton > button.social:hover { background-color: #c0392b; }
+</style>
+""", unsafe_allow_html=True)
+
 # Main page
 def main_page():
-    # Custom HTML for buttons
-    st.markdown("""
-    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px;">
-        <form action="#" method="post" style="display: inline;">
-            <button type="submit" name="page" value="outdoor" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #3498db; color: white;">Outdoor Environmental Data</button>
-        </form>
-        <form action="#" method="post" style="display: inline;">
-            <button type="submit" name="page" value="indoor" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #2ecc71; color: white;">Indoor Environmental Data</button>
-        </form>
-        <form action="#" method="post" style="display: inline;">
-            <button type="submit" name="page" value="medical" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #f39c12; color: white;">Medical Data</button>
-        </form>
-        <form action="#" method="post" style="display: inline;">
-            <button type="submit" name="page" value="social" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #e74c3c; color: white;">Social Data</button>
-        </form>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("<div class='button-container'>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Outdoor Environmental Data", key="outdoor"):
+            st.session_state.page = "outdoor"
+
+        if st.button("Indoor Environmental Data", key="indoor"):
+            st.session_state.page = "indoor"
+
+    with col2:
+        if st.button("Medical Data", key="medical"):
+            st.session_state.page = "medical"
+
+        if st.button("Social Data", key="social"):
+            st.session_state.page = "social"
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Outdoor Page
 def outdoor_page():
