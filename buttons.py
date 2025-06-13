@@ -47,7 +47,9 @@ def medical_page():
 def social_page():
     st.write("### Social Data")
     st.markdown("[Go to Social Information Resource 1](http://www.digi.to.it/2021/10/07/gruppi-di-lettura-a-torino-quali-seguire/)")
-    st.markdown("[Go to Social Information Resource 2](https://www.promozionedellasalute.it/iniziative/comunita/gruppi-di-cammino)")
+    st.markdown("[Go to Social Information Resource 2](https://torino.circololettori.it/gruppi-25-2/)")
+    st.markdown("[Go to Social Information Resource 3](https://www.compagniadeimeglioinsieme.com/i-gruppi/gruppo-camminiamoinsieme-fitel-piemonte/)")
+    st.markdown("[Go to Social Information Resource 4](https://www.promozionedellasalute.it/iniziative/comunita/gruppi-di-cammino)")
     st.button("Back", on_click=lambda: setattr(st.session_state, "page", "main"))
 
 # Routing based on the selected page
