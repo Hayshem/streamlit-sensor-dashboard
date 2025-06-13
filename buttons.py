@@ -3,8 +3,8 @@ import streamlit as st
 st.markdown("""
 <style>
 div.stButton > button {
-    height: 150px; /* Adjust height for larger buttons */
-    width: 150px;  /* Adjust width for square buttons */
+    height: 120px; /* Adjust height for larger buttons */
+    width: 75px;  /* Adjust width for square buttons */
     font-size: 20px; /* Adjust font size */
     margin: 10px;  /* Add space between buttons */
     color: white;  /* Button text color */
