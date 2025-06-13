@@ -1,55 +1,24 @@
 import streamlit as st
 
-# Inject custom CSS
-st.markdown("""
-<style>
-/* Centering buttons in a row */
-div.row-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Space between buttons */
-    padding: 20px;
-}
-
-/* Button styles */
-button.custom-button {
-    height: 100px; /* Button height */
-    width: 200px; /* Button width */
-    font-size: 18px; /* Font size */
-    border-radius: 10px; /* Rounded corners */
-    border: none; /* Remove border */
-    cursor: pointer; /* Pointer cursor */
-    color: white; /* Text color */
-    margin: 0;
-}
-
-/* Button colors */
-button.outdoor { background-color: #3498db; } /* Blue */
-button.indoor { background-color: #2ecc71; } /* Green */
-button.medical { background-color: #f39c12; } /* Orange */
-button.social { background-color: #e74c3c; } /* Red */
-
-/* Hover effects */
-button.outdoor:hover { background-color: #2980b9; }
-button.indoor:hover { background-color: #27ae60; }
-button.medical:hover { background-color: #d35400; }
-button.social:hover { background-color: #c0392b; }
-</style>
-""", unsafe_allow_html=True)
-
 # Main page
 def main_page():
-    st.markdown("<div class='row-buttons'>", unsafe_allow_html=True)
-    if st.button("Outdoor Environmental Data", key="outdoor", help="Click to view outdoor data"):
-        st.session_state.page = "outdoor"
-    if st.button("Indoor Environmental Data", key="indoor", help="Click to view indoor data"):
-        st.session_state.page = "indoor"
-    if st.button("Medical Data", key="medical", help="Click to view medical data"):
-        st.session_state.page = "medical"
-    if st.button("Social Data", key="social", help="Click to view social data"):
-        st.session_state.page = "social"
-    st.markdown("</div>", unsafe_allow_html=True)
+    # Custom HTML for buttons
+    st.markdown("""
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 20px;">
+        <form action="#" method="post" style="display: inline;">
+            <button type="submit" name="page" value="outdoor" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #3498db; color: white;">Outdoor Environmental Data</button>
+        </form>
+        <form action="#" method="post" style="display: inline;">
+            <button type="submit" name="page" value="indoor" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #2ecc71; color: white;">Indoor Environmental Data</button>
+        </form>
+        <form action="#" method="post" style="display: inline;">
+            <button type="submit" name="page" value="medical" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #f39c12; color: white;">Medical Data</button>
+        </form>
+        <form action="#" method="post" style="display: inline;">
+            <button type="submit" name="page" value="social" style="height: 100px; width: 200px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; background-color: #e74c3c; color: white;">Social Data</button>
+        </form>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Outdoor Page
 def outdoor_page():
@@ -84,7 +53,7 @@ def social_page():
     if st.button("Back", key="back_social"):
         st.session_state.page = "main"
 
-# Routing based on the selected page
+# Routing logic
 if "page" not in st.session_state:
     st.session_state.page = "main"
 
