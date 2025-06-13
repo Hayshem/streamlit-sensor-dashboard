@@ -26,15 +26,15 @@ def main_page():
 # Outdoor Page
 def outdoor_page():
     st.write("### Outdoor Environmental Data")
-    st.markdown("[Go to Outdoor Data Dashboard](https://meteo.it)")
+    st.markdown("[Go to Outdoor Information Resource](https://meteo.it)")
     st.button("Back", on_click=lambda: setattr(st.session_state, "page", "main"))
 
 # Indoor Page
 def indoor_page():
     st.write("### Indoor Environmental Data")
-    st.markdown("[Go to Dashboard 1](https://telefragmont-node1.streamlit.app/)")
-    st.markdown("[Go to Dashboard 2](https://telefragmont-node2.streamlit.app/)")
-    st.markdown("[Go to Dashboard 3](https://telefragmont-node3.streamlit.app/)")
+    st.markdown("[Go to Indoor Information Dashboard 1](https://telefragmont-node1.streamlit.app/)")
+    st.markdown("[Go to Indoor Information Dashboard 2](https://telefragmont-node2.streamlit.app/)")
+    st.markdown("[Go to Indoor Information Dashboard 3](https://telefragmont-node3.streamlit.app/)")
     st.button("Back", on_click=lambda: setattr(st.session_state, "page", "main"))
 
 # Medical Page
@@ -46,8 +46,8 @@ def medical_page():
 # Social Page
 def social_page():
     st.write("### Social Data")
-    st.markdown("[Go to Social Data Dashboard 1](http://www.digi.to.it/2021/10/07/gruppi-di-lettura-a-torino-quali-seguire/)")
-    st.markdown("[Go to Social Data Dashboard 2](https://www.promozionedellasalute.it/iniziative/comunita/gruppi-di-cammino)")
+    st.markdown("[Go to Social Information Resource 1](http://www.digi.to.it/2021/10/07/gruppi-di-lettura-a-torino-quali-seguire/)")
+    st.markdown("[Go to Social Information Resource 2](https://www.promozionedellasalute.it/iniziative/comunita/gruppi-di-cammino)")
     st.button("Back", on_click=lambda: setattr(st.session_state, "page", "main"))
 
 # Routing based on the selected page
