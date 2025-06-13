@@ -24,17 +24,17 @@ div.stButton > button {
 }
 
 /* Colors for each button */
-div.stButton > button:first-of-type { background-color: #3498db; } /* Blue */
+div.stButton > button:first-of-type { background-color: #555; } /* Dark gray background */
 div.stButton > button:nth-of-type(2) { background-color: #2ecc71; } /* Green */
 div.stButton > button:nth-of-type(3) { background-color: #f39c12; } /* Orange */
 div.stButton > button:nth-of-type(4) { background-color: #e74c3c; } /* Red */
 
 /* Style for the smaller back button */
 .back-button button {
-    height: 20px; /* Smaller height */
-    width: 40px; /* Smaller width */
+    height: 40px; /* Smaller height */
+    width: 80px; /* Smaller width */
     font-size: 14px; /* Smaller font size */
-    background-color: #555; /* Black */
+    background-color: #555; /* Dark gray background */
     color: white; /* White text */
     border-radius: 10px; /* Rounded corners */
 }
