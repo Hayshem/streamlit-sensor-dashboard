@@ -19,13 +19,16 @@ div.stButton > button:nth-of-type(3) { background-color: #f39c12; } /* Orange */
 div.stButton > button:nth-of-type(4) { background-color: #e74c3c; } /* Red */
 
 /* Style for smaller back button */
-div.stButton > button.back-button {
+.back-button {
+    text-align: center;
+    margin-top: 20px;
+}
+.back-button button {
     height: 50px; /* Smaller height */
     width: 100px; /* Smaller width */
     font-size: 14px; /* Smaller font size */
     background-color: #555; /* Dark gray background */
     color: white; /* White text */
-    margin-top: 20px; /* Spacing from top */
     border-radius: 10px; /* Rounded corners */
 }
 </style>
@@ -55,8 +58,10 @@ def main_page():
 def outdoor_page():
     st.write("### Outdoor Environmental Data")
     st.markdown("[Go to Outdoor Information Resource](https://meteo.it)")
-    if st.button("Back", key="back_outdoor", args=None, kwargs=None, css_classes=["back-button"]):
+    st.markdown('<div class="back-button">', unsafe_allow_html=True)
+    if st.button("Back", key="back_outdoor"):
         st.session_state.page = "main"
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Indoor Page
 def indoor_page():
@@ -64,15 +69,19 @@ def indoor_page():
     st.markdown("[Go to Indoor Information Dashboard 1](https://telefragmont-node1.streamlit.app/)")
     st.markdown("[Go to Indoor Information Dashboard 2](https://telefragmont-node2.streamlit.app/)")
     st.markdown("[Go to Indoor Information Dashboard 3](https://telefragmont-node3.streamlit.app/)")
-    if st.button("Back", key="back_indoor", args=None, kwargs=None, css_classes=["back-button"]):
+    st.markdown('<div class="back-button">', unsafe_allow_html=True)
+    if st.button("Back", key="back_indoor"):
         st.session_state.page = "main"
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Medical Page
 def medical_page():
     st.write("### Medical Data")
     st.markdown("[Go to Medical Data Dashboard](https://www.statista.com/topics/6349/healthcare-system-in-italy/)")
-    if st.button("Back", key="back_medical", args=None, kwargs=None, css_classes=["back-button"]):
+    st.markdown('<div class="back-button">', unsafe_allow_html=True)
+    if st.button("Back", key="back_medical"):
         st.session_state.page = "main"
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Social Page
 def social_page():
@@ -81,8 +90,10 @@ def social_page():
     st.markdown("[Go to Social Information Resource 2](https://torino.circololettori.it/gruppi-25-2/)")
     st.markdown("[Go to Social Information Resource 3](https://www.compagniadeimeglioinsieme.com/i-gruppi/gruppo-camminiamoinsieme-fitel-piemonte/)")
     st.markdown("[Go to Social Information Resource 4](https://www.promozionedellasalute.it/iniziative/comunita/gruppi-di-cammino)")
-    if st.button("Back", key="back_social", args=None, kwargs=None, css_classes=["back-button"]):
+    st.markdown('<div class="back-button">', unsafe_allow_html=True)
+    if st.button("Back", key="back_social"):
         st.session_state.page = "main"
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Routing based on the selected page
 if "page" not in st.session_state:
