@@ -1,5 +1,22 @@
 import streamlit as st
 
+st.markdown("""
+<style>
+div.stButton > button {
+    height: 150px; /* Adjust height for larger buttons */
+    width: 150px;  /* Adjust width for square buttons */
+    font-size: 20px; /* Adjust font size */
+    margin: 10px;  /* Add space between buttons */
+    color: white;  /* Button text color */
+    border-radius: 15px; /* Rounded corners */
+}
+div.stButton > button:first-of-type { background-color: #3498db; } /* Blue */
+div.stButton > button:nth-of-type(2) { background-color: #2ecc71; } /* Green */
+div.stButton > button:nth-of-type(3) { background-color: #f39c12; } /* Orange */
+div.stButton > button:nth-of-type(4) { background-color: #e74c3c; } /* Red */
+</style>
+""", unsafe_allow_html=True)
+
 # Main page
 def main_page():
     # Create a grid layout for buttons
@@ -7,20 +24,20 @@ def main_page():
     
     with col1:
         # Outdoor Environmental Data Button
-        if st.button("Outdoor Environmental Data", use_container_width=True, key="outdoor"):
+        if st.button("Outdoor Environmental Data",  key="outdoor"):
             st.session_state.page = "outdoor"
 
         # Indoor Environmental Data Button
-        if st.button("Indoor Environmental Data", use_container_width=True, key="indoor"):
+        if st.button("Indoor Environmental Data",  key="indoor"):
             st.session_state.page = "indoor"
 
     with col2:
         # Medical Data Button
-        if st.button("Medical Data", use_container_width=True, key="medical"):
+        if st.button("Medical Data", key="medical"):
             st.session_state.page = "medical"
 
         # Social Data Button
-        if st.button("Social Data", use_container_width=True, key="social"):
+        if st.button("Social Data", key="social"):
             st.session_state.page = "social"
 
 # Outdoor Page
