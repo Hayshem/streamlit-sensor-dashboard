@@ -1,5 +1,28 @@
 import streamlit as st
 
+# Inject custom CSS for styling buttons
+st.markdown("""
+    <style>
+        /* Style buttons with equal sizes */
+        div.stButton > button {
+            height: 100px; /* Set button height */
+            width: 200px; /* Set button width */
+            font-size: 16px; /* Font size for button text */
+            margin: 10px; /* Space between buttons */
+            border-radius: 8px; /* Rounded corners */
+            background-color: #3498db; /* Default background color */
+            color: white; /* Default text color */
+            border: none; /* Remove border */
+            cursor: pointer; /* Pointer cursor */
+        }
+
+        /* Hover effect for buttons */
+        div.stButton > button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Main page
 def main_page():
     st.title("Main Dashboard")
