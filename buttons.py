@@ -1,45 +1,67 @@
 import streamlit as st
 
-# Inject custom CSS for styling buttons
+# Inject custom CSS for styling buttons with unique colors
 st.markdown("""
     <style>
-        /* Style buttons with equal sizes */
+        /* Base button style */
         div.stButton > button {
             height: 100px; /* Set button height */
             width: 200px; /* Set button width */
             font-size: 16px; /* Font size for button text */
             margin: 10px; /* Space between buttons */
             border-radius: 8px; /* Rounded corners */
-            background-color: #3498db; /* Default background color */
             color: white; /* Default text color */
             border: none; /* Remove border */
             cursor: pointer; /* Pointer cursor */
         }
 
-        /* Hover effect for buttons */
-        div.stButton > button:hover {
-            background-color: #2980b9; /* Darker blue on hover */
+        /* Unique colors for each button */
+        div.stButton > button.outdoor-button {
+            background-color: #3498db; /* Blue */
+        }
+        div.stButton > button.indoor-button {
+            background-color: #2ecc71; /* Green */
+        }
+        div.stButton > button.medical-button {
+            background-color: #f39c12; /* Orange */
+        }
+        div.stButton > button.social-button {
+            background-color: #e74c3c; /* Red */
+        }
+
+        /* Hover effect for each button */
+        div.stButton > button.outdoor-button:hover {
+            background-color: #2980b9; /* Darker blue */
+        }
+        div.stButton > button.indoor-button:hover {
+            background-color: #27ae60; /* Darker green */
+        }
+        div.stButton > button.medical-button:hover {
+            background-color: #d35400; /* Darker orange */
+        }
+        div.stButton > button.social-button:hover {
+            background-color: #c0392b; /* Darker red */
         }
     </style>
 """, unsafe_allow_html=True)
 
 # Main page
 def main_page():
-
     # Arrange buttons in two columns
     col1, col2 = st.columns(2, gap="large")
     with col1:
-        if st.button("Outdoor Environmental Data", key="outdoor"):
+        # Add class names to buttons for unique styling
+        if st.button("Outdoor Environmental Data", key="outdoor", args=(), kwargs={"className": "outdoor-button"}):
             st.session_state.page = "outdoor"
 
-        if st.button("Indoor Environmental Data", key="indoor"):
+        if st.button("Indoor Environmental Data", key="indoor", args=(), kwargs={"className": "indoor-button"}):
             st.session_state.page = "indoor"
 
     with col2:
-        if st.button("Medical Data", key="medical"):
+        if st.button("Medical Data", key="medical", args=(), kwargs={"className": "medical-button"}):
             st.session_state.page = "medical"
 
-        if st.button("Social Data", key="social"):
+        if st.button("Social Data", key="social", args=(), kwargs={"className": "social-button"}):
             st.session_state.page = "social"
 
 # Outdoor Page
