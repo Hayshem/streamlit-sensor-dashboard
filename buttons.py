@@ -1,64 +1,52 @@
 import streamlit as st
 
-# Inject custom CSS for styling buttons
+# Inject custom CSS for button styling
 st.markdown("""
     <style>
-        /* Base button style with consistent sizes */
-        .custom-button {
+        div.stButton > button {
             height: 100px; /* Set button height */
             width: 200px; /* Set button width */
             font-size: 16px; /* Font size for button text */
             margin: 10px; /* Space between buttons */
             border-radius: 8px; /* Rounded corners */
-            color: white; /* Text color */
             border: none; /* Remove border */
+            color: white; /* Text color */
             cursor: pointer; /* Pointer cursor */
-            display: inline-block; /* Align buttons */
-            text-align: center; /* Center text */
         }
-
-        /* Unique colors for each button */
-        .outdoor {
-            background-color: #3498db; /* Blue */
-        }
-        .indoor {
-            background-color: #2ecc71; /* Green */
-        }
-        .medical {
-            background-color: #f39c12; /* Orange */
-        }
-        .social {
-            background-color: #e74c3c; /* Red */
-        }
+        /* Unique button colors */
+        div.stButton > button.outdoor { background-color: #3498db; } /* Blue */
+        div.stButton > button.indoor { background-color: #2ecc71; } /* Green */
+        div.stButton > button.medical { background-color: #f39c12; } /* Orange */
+        div.stButton > button.social { background-color: #e74c3c; } /* Red */
 
         /* Hover effects */
-        .outdoor:hover {
-            background-color: #2980b9; /* Darker blue */
-        }
-        .indoor:hover {
-            background-color: #27ae60; /* Darker green */
-        }
-        .medical:hover {
-            background-color: #d35400; /* Darker orange */
-        }
-        .social:hover {
-            background-color: #c0392b; /* Darker red */
-        }
+        div.stButton > button.outdoor:hover { background-color: #2980b9; }
+        div.stButton > button.indoor:hover { background-color: #27ae60; }
+        div.stButton > button.medical:hover { background-color: #d35400; }
+        div.stButton > button.social:hover { background-color: #c0392b; }
     </style>
 """, unsafe_allow_html=True)
 
 # Main page
 def main_page():
-    st.markdown("<div style='display: flex; justify-content: center;'>", unsafe_allow_html=True)
-    # Arrange buttons in two rows
-    st.markdown("""
-        <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <button class="custom-button outdoor" onclick="window.location.href='?page=outdoor'">Outdoor Environmental Data</button>
-            <button class="custom-button indoor" onclick="window.location.href='?page=indoor'">Indoor Environmental Data</button>
-            <button class="custom-button medical" onclick="window.location.href='?page=medical'">Medical Data</button>
-            <button class="custom-button social" onclick="window.location.href='?page=social'">Social Data</button>
-        </div>
-    """, unsafe_allow_html=True)
+    st.title("Main Dashboard")
+    st.write("Choose an option:")
+
+    # Arrange buttons in two columns
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Outdoor Environmental Data", key="outdoor", help="Outdoor Environmental Data"):
+            st.session_state.page = "outdoor"
+
+        if st.button("Indoor Environmental Data", key="indoor", help="Indoor Environmental Data"):
+            st.session_state.page = "indoor"
+
+    with col2:
+        if st.button("Medical Data", key="medical", help="Medical Data"):
+            st.session_state.page = "medical"
+
+        if st.button("Social Data", key="social", help="Social Data"):
+            st.session_state.page = "social"
 
 # Outdoor Page
 def outdoor_page():
